@@ -37,7 +37,7 @@ export default {
   methods: {
     handleClick() {
       this.$router.push({
-        name: "Layout"
+        name: "wordExport"
       });
     }
   }

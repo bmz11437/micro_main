@@ -26,14 +26,17 @@ const routes = [
           import(/* webpackChunkName: "Portal" */ "../views/Portal.vue"),
       },
       {
-        path: "Layout",
-        name: "Layout",
+        path: "wordExport",
+        name: "wordExport",
+        meta: {
+          activeRule: "/main/#/word_export",
+        },
         component: () =>
           import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),
+        children: [],
       },
     ],
   },
-  
 ];
 
 const router = new VueRouter({

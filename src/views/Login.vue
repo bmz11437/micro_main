@@ -163,6 +163,9 @@ export default {
 .login {
   width: 100%;
   height: 100%;
+  background: url(https://user-images.githubusercontent.com/25878302/50690661-72ad2280-102e-11e9-814d-68b5d5e38c21.jpg);
+  background-repeat: no-repeat;
+  background-size: 100%;
 }
 .login-container {
   position: absolute;

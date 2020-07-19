@@ -38,10 +38,27 @@ export function setGlobalData(userInfo, mapConfig) {
   });
 }
 
-router.beforeEach(async (to, from, next) => {
-  toggleMicroApp(false);
-  console.log(to, from);
-  next();
+router.beforeEach((to, from, next) => {
+  if (!to.matched[0]) {
+    if (!from.matched[0]) {
+      next({
+        path: "/Portal",
+      });
+    }
+
+    return;
+  } else {
+    next();
+  }
+
+  if (to.matched[1] && to.matched[1].meta && to.matched[1].meta.activeRule) {
+    setTimeout(() => {
+      history.replaceState(null, null, to.matched[1].meta.activeRule);
+      toggleMicroApp(true);
+    }, 300);
+  } else {
+    toggleMicroApp(false);
+  }
 });
 
 function toggleMicroApp(isShow) {
