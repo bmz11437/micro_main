@@ -28,7 +28,8 @@ function resolve(dir) {
   return path.join(__dirname, dir);
 }
 module.exports = {
-  publicPath:'/main',
+  publicPath: "/main/",
+  outputDir: "dist",
   devServer: {
     port: 9527,
     headers: {

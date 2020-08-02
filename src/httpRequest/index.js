@@ -1,5 +1,6 @@
 import axios from "axios";
 import hjson from "hjson";
+import iview from "view-design";
 
 export function JGET(url, info, params, headers = {}) {
   return new Promise((resolve, reject) => {
@@ -41,7 +42,6 @@ export function GET(url, info, params, headers = {}) {
           ...headers,
           Authorization: "Bearer " + token,
         },
-
       })
       .then((response) => {
         if (response.status == 200) {
@@ -72,12 +72,14 @@ export function POST(url, info, params) {
         if (response.status == 200) {
           resolve(response.data);
         } else {
+          iview.Message.error(response.message);
           resolve(response);
         }
       })
       .catch((err) => {
         console.error(`${info}接口调用失败`);
-        reject(err);
+        iview.Message.error(err.response.data.message);
+        reject(err.response);
       });
   });
 }

@@ -1,7 +1,7 @@
 import { JGET, POST, GET } from "@/httpRequest";
 import store from "@/store";
 export function getAppConfig() {
-  return JGET("/static/appConfig.hjson");
+  return JGET("static/appConfig.hjson");
 }
 
 export function getUserInfo(appId, time, signature, param) {
@@ -19,5 +19,11 @@ export function login(param) {
 
 export function getInfo() {
   let baseUrl = store.getters.appConfig.api;
-  return GET(baseUrl + `/user`, "获取用户信息");
+  return GET(baseUrl + `/user/getUserInfo`, "获取用户信息");
+}
+
+export function regisUser(param) {
+  let baseUrl = store.getters.appConfig.api;
+
+  return POST(baseUrl + `/user`, "用户注册", param);
 }

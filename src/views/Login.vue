@@ -9,13 +9,13 @@
             </div>
             <div class="login-header">
               <h3>
-                <strong>登录</strong>
+                <strong>{{title}}</strong>
               </h3>
               <h5
                 v-if="false"
               >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis quam numquam</h5>
             </div>
-            <div class="login-body" v-show="!showErWei">
+            <div class="login-body" v-show="!showErWei&&!isRegis">
               <div class="form-group">
                 <div class="pos-r">
                   <input
@@ -38,14 +38,69 @@
                   <i class="fa fa-lock"></i>
                 </div>
               </div>
-              <div class="form-group text-right" v-if="false">
-                <a href="#" class="bold">Forgot password?</a>
-              </div>
-
               <div class="form-group">
                 <button class="btn btn-primary form-control" @click="userLogin">
                   <strong>登录</strong>
                 </button>
+                <button class="btn btn-success form-control" @click="showRegister">
+                  <strong>注册</strong>
+                </button>
+              </div>
+            </div>
+            <div class="login-body" v-show="isRegis">
+              <div class="form-group">
+                <div class="pos-r">
+                  <input
+                    v-model="name"
+                    type="text"
+                    placeholder="请输入登陆名..."
+                    class="form-username form-control"
+                  />
+                  <i class="fa fa-user"></i>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="pos-r">
+                  <input
+                    v-model="name2"
+                    type="text"
+                    placeholder="请输入用户名..."
+                    class="form-username form-control"
+                  />
+                  <i class="fa fa-user"></i>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="pos-r">
+                  <input
+                    v-model="password"
+                    type="password"
+                    placeholder="请输入密码..."
+                    class="form-password form-control"
+                  />
+                  <i class="fa fa-lock"></i>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="pos-r">
+                  <input
+                    v-model="password2"
+                    type="password"
+                    placeholder="请再次输入密码..."
+                    class="form-password form-control"
+                  />
+                  <i class="fa fa-lock"></i>
+                </div>
+              </div>
+              <div class="form-group">
+                <div class="btn-group" role="group" aria-label="..." style="width:100%">
+                  <button class="btn btn-primary form-control" @click="handleRegis">
+                    <strong>确定</strong>
+                  </button>
+                  <button class="btn btn-info form-control" @click="showRegister">
+                    <strong>取消</strong>
+                  </button>
+                </div>
               </div>
             </div>
             <div class="erwei-page" v-show="showErWei">
@@ -70,24 +125,51 @@
 
 <script>
 import HmacSHA256 from "crypto-js/hmac-sha256";
-import { getUserInfo, login, getInfo } from "@/api";
+import { getUserInfo, login, getInfo, regisUser } from "@/api";
 import Base64 from "crypto-js/enc-base64";
 export default {
+  name: "Login",
   data() {
     return {
+      isRegis: false,
       name: "",
       password: "",
+      name2: "",
+      password2: "",
       appId: "dingoaybjwr1ydtutbvpkk",
       backUrl: "http://localhost:9527/#/Login",
       picUrl: `https://oapi.dingtalk.com/connect/qrconnect?appid=dingoaybjwr1ydtutbvpkk&response_type=code&scope=snsapi_login&state=STATE&redirect_uri=http://localhost:9527/#/Login`,
       showErWei: false
     };
   },
+  computed: {
+    title() {
+      return this.isRegis ? "注册" : "登陆";
+    }
+  },
   mounted() {
     // this.dingLogin();
     // this.getLoginUrl();
   },
   methods: {
+    async handleRegis() {
+      if (this.password !== this.password2) {
+        this.$Message.error("密码不一致！");
+        return;
+      }
+      let res = await regisUser({
+        name: this.name,
+        userName: this.name2,
+        password: this.password,
+        type: "user"
+      });
+      console.log(res);
+      this.$Message.success("注册成功！");
+      this.showRegister();
+    },
+    showRegister() {
+      this.isRegis = !this.isRegis;
+    },
     dingLogin() {
       // 这边需要用 $nextTick() 方法来等DOM渲染完成后，才能获取到盒子容器（$nextTick 方法见另一篇文章）
       this.$nextTick(() => {
@@ -163,7 +245,7 @@ export default {
 .login {
   width: 100%;
   height: 100%;
-  background: url(https://user-images.githubusercontent.com/25878302/50690661-72ad2280-102e-11e9-814d-68b5d5e38c21.jpg);
+  background: url(~@/assets/imgs/bg1.jpg);
   background-repeat: no-repeat;
   background-size: 100%;
 }
@@ -177,7 +259,7 @@ export default {
   background: rgba(0, 0, 0, 0.4);
   padding: 1rem 0;
   position: relative;
-  height: 25rem;
+
   .erwei-page {
     width: 100%;
     height: calc(100% - 4rem);
@@ -270,6 +352,7 @@ export default {
   -webkit-border-radius: 0px;
   border-radius: 0px;
   font-size: 20px;
+  margin-bottom: 20px;
 }
 .login-container .login-footer {
   padding: 20px 0;
@@ -311,5 +394,8 @@ export default {
 }
 /deep/.form-group {
   margin-bottom: 2.5rem;
+}
+/deep/ .form-group:last-child {
+  margin-bottom: 0;
 }
 </style>

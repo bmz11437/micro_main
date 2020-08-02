@@ -1,18 +1,30 @@
 <template>
   <div class="layout">
-    <Layout>
-      <div class="header">
-        <Menu mode="horizontal" theme="light" :active-name="activeIndex" @on-select="onClick">
-          <div class="layout-logo">个人网站</div>
-          <div class="layout-nav">
-            <MenuItem :name="i" v-for="(item,i) in apps" :key="i">
-              <Icon :type="item.icon"></Icon>
-              {{item.title}}
-            </MenuItem>
-          </div>
-        </Menu>
-      </div>
-    </Layout>
+    <div class="header">
+      <Menu mode="horizontal" theme="light" :active-name="activeIndex" @on-select="onClick">
+        <div class="layout-logo" @click="handleBack">个人网站</div>
+        <div class="layout-nav">
+          <MenuItem :name="i" v-for="(item,i) in apps" :key="i">
+            <Icon :type="item.icon"></Icon>
+            {{item.title}}
+          </MenuItem>
+          <Dropdown @on-click="handleDropClick">
+            <a href="javascript:void(0)">
+              <Icon type="md-person" />
+              {{userInfo.userName}}
+            </a>
+            <DropdownMenu slot="list">
+              <DropdownItem name="登出">
+                <Icon type="md-power" />登出
+              </DropdownItem>
+              <DropdownItem name="修改密码">
+                <Icon type="md-create" />修改密码
+              </DropdownItem>
+            </DropdownMenu>
+          </Dropdown>
+        </div>
+      </Menu>
+    </div>
     <div class="iframe-con" v-show="showIframe">
       <iframe :src="iframeUrl" style="width:100%;height:100%;overflow: hidden;border:none"></iframe>
       <span class="back-icon" @click="handleBack">
@@ -23,8 +35,10 @@
 </template>
 <script>
 export default {
+  name: "Layout",
   data() {
     return {
+      userInfo: this.$store.getters.userInfo,
       activeIndex: 0,
       showIframe: false,
       iframeUrl: ""
@@ -35,9 +49,50 @@ export default {
       return this.$store.getters.appConfig.microApps;
     }
   },
+
+  mounted() {
+    let name = this.$route.name;
+    this.apps.forEach((item, i) => {
+      if (item.name == name && item.type == "iframe") {
+        this.iframeUrl = item.entry;
+        this.showIframe = true;
+        this.activeIndex = i;
+      }
+    });
+  },
   methods: {
-    onClick() {},
-    handleBack() {}
+    logOut() {
+      debugger
+      this.$router.push({
+        name: "Login"
+      });
+    },
+    handleDropClick(name) {
+      switch (name) {
+        case "登出":
+          this.logOut();
+          break;
+        case "修改密码":
+          break;
+      }
+    },
+    onClick(i) {
+      let data = this.apps[i];
+      if (data.type == "iframe") {
+        this.iframeUrl = data.entry;
+        this.showIframe = true;
+      } else {
+        this.$router.push({
+          name: data.name
+        });
+      }
+    },
+
+    handleBack() {
+      this.$router.push({
+        name: "Portal"
+      });
+    }
   }
 };
 </script>
@@ -93,16 +148,22 @@ export default {
   left: 20px;
   text-align: center;
   font-size: 20px;
+  cursor: pointer;
 }
 .layout-nav {
-  width: 420px;
   margin: 0 auto;
-  margin-right: 20px;
+  margin-right: 3rem;
   height: 100%;
   text-align: right;
 }
 .ivu-menu-horizontal .ivu-menu-item {
   float: unset;
   display: inline-block;
+}
+/deep/ .ivu-select-dropdown {
+  text-align: left;
+  /deep/ .ivu-icon {
+    margin-right: 0.5rem;
+  }
 }
 </style>

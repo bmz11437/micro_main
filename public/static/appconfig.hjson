@@ -1,11 +1,44 @@
 {
     "development":{
-        "api":"http://localhost:3000",
+        "api":"http://localhost:2000",
         "microApps":[
             {
                 // 系统文件名
                 "icon": "ios-navigate",
-                "name": "word_export",
+                "name": "WordExport",
+                time:100,
+                // 系统标题
+                "title": "模板导出系统",
+                // 系统入口
+                "entry": "http://localhost:8080/word_export/",
+                // 系统路由
+                "activeRule": "/main/#/word_export",
+                "container": "#micro_app",
+                "type": "microApp"
+            },
+            {
+                // 系统文件名
+                "icon": "ios-navigate",
+                "name": "MyBlog",
+                time:100,
+                // 系统标题
+                "title": "个人博客",
+                // 系统入口
+                "entry": "http://localhost:8080/blog",
+                // 系统路由
+                
+                "container": "#micro_app",
+                "type": "iframe"
+            },
+        ]
+    },
+    "production":{
+        "api":"http://122.51.140.204:2000",
+        "microApps":[
+            {
+                // 系统文件名
+                "icon": "ios-navigate",
+                "name": "WordExport",
                 time:100,
                 // 系统标题
                 "title": "模板导出系统",
@@ -17,8 +50,5 @@
                 "type": "microApp"
             },
         ]
-    },
-    "production":{
-
     }
 }

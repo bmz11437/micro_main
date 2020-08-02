@@ -17,13 +17,15 @@ export async function initMicroApp(config) {
   let appsConfig = config.microApps;
   let apps = [];
   appsConfig.forEach((item) => {
-    apps.push({
-      ...item,
-      props: {
-        req,
-        config,
-      },
-    });
+    if (item.type == "microApp") {
+      apps.push({
+        ...item,
+        props: {
+          req,
+          config,
+        },
+      });
+    }
   });
   registerMicroApps(apps);
   start({ sandbox: false, prefetch: "all" });
@@ -39,13 +41,18 @@ export function setGlobalData(userInfo, mapConfig) {
 }
 
 router.beforeEach((to, from, next) => {
+  if (!store.getters.userInfo.name && to.name !== "Login") {
+    next({
+      path: "/Login",
+    });
+    return;
+  }
   if (!to.matched[0]) {
     if (!from.matched[0]) {
       next({
         path: "/Portal",
       });
     }
-
     return;
   } else {
     next();

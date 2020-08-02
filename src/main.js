@@ -9,12 +9,18 @@ import store from "./store";
 import ViewUI from "view-design";
 import "view-design/dist/styles/iview.css";
 
+import "fullpage.js/vendors/scrolloverflow"; // Optional. When using scrollOverflow:true
+
+import VueFullPage from "vue-fullpage.js";
+
 import { getAppConfig } from "@/api";
 import { initMicroApp } from "./initMicroApps";
 // import $ from 'jquery'
 Vue.config.productionTip = false;
 
+Vue.use(VueFullPage);
 Vue.use(ViewUI);
+
 async function initApp() {
   let config = await getAppConfig();
   const env = process.env.NODE_ENV;

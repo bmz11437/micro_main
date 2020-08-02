@@ -1,43 +1,48 @@
 <template>
-  <div id="fullpage">
-    <div class="section" id="section0">
-      <h1 @click="handleClick">fullPage.js</h1>
+  <full-page ref="fullpage" :options="options">
+    <div class="section">
+      <WordExport @handle-click="handleClick('wordExport')" />
     </div>
-    <div class="section" id="section1">
-      <div class="slide" id="slide1" v-if="false">
-        <h1>Slide Backgrounds</h1>
-      </div>
-      <div class="slide" id="slide2" v-if="false">
-        <h1>Totally customizable</h1>
-      </div>
+    <div class="section">
+      <MyBlog @handle-click="handleClick('MyBlog')" />
     </div>
-    <div class="section" id="section2">
-      <h1>
-        Lovely images
-        <br />for a lovely page
-      </h1>
-    </div>
-    <div class="section" id="section3">
-      <h1>One Image = One thousand words</h1>
-    </div>
-  </div>
+  </full-page>
 </template>
 
 <script>
-import fullPage from "fullpage.js";
-import "fullpage.js/dist/fullpage.css";
+import WordExport from "./PortalItems/WordExport";
+import MyBlog from "./PortalItems/MyBlog";
 export default {
+  name: "Portal",
+  components: {
+    WordExport,
+    MyBlog
+  },
+  data() {
+    return {
+      microApps: [],
+      options: {
+        verticalCentered: false,
+        css3: false
+      }
+    };
+  },
   mounted() {
-    let myFullpage = new fullPage("#fullpage", {
-      verticalCentered: false,
-      css3: false
-    });
-    console.log(myFullpage);
+    this.microApps = this.$store.getters.appConfig.microApps;
   },
   methods: {
-    handleClick() {
+    getPortalComp(i) {
+      let comp;
+      switch (i) {
+        case 0:
+          comp = WordExport;
+          break;
+      }
+      return comp;
+    },
+    handleClick(name) {
       this.$router.push({
-        name: "wordExport"
+        name
       });
     }
   }
@@ -45,6 +50,10 @@ export default {
 </script>
 
 <style scoped>
+.full-page {
+  width: 100%;
+  height: 100%;
+}
 /* Style for our header texts
 	* --------------------------------------- */
 h1 {
