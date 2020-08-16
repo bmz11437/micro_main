@@ -45,6 +45,16 @@ const routes = [
           import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),
         children: [],
       },
+      {
+        path: "oms",
+        name: "oms",
+        meta: {
+          activeRule: "/main/#/oms",
+        },
+        component: () =>
+          import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),
+        children: [],
+      },
     ],
   },
 ];

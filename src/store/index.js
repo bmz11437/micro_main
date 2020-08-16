@@ -1,6 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
-
+import { setGlobalData } from "@/initMicroApps";
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -14,6 +14,7 @@ export default new Vuex.Store({
     },
     userInfo(state, data) {
       state.userInfo = data;
+      setGlobalData(data);
     },
   },
   actions: {},

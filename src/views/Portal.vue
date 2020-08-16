@@ -4,6 +4,9 @@
       <WordExport @handle-click="handleClick('wordExport')" />
     </div>
     <div class="section">
+      <WordExport @handle-click="handleClick('oms')" />
+    </div>
+    <div class="section">
       <MyBlog @handle-click="handleClick('MyBlog')" />
     </div>
   </full-page>
