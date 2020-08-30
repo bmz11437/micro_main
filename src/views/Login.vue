@@ -45,6 +45,9 @@
                 <button class="btn btn-success form-control" @click="showRegister">
                   <strong>注册</strong>
                 </button>
+                <button class="btn btn-info form-control" @click="getDm">
+                  <strong>测试</strong>
+                </button>
               </div>
             </div>
             <div class="login-body" v-show="isRegis">
@@ -97,7 +100,7 @@
                   <button class="btn btn-primary form-control" @click="handleRegis">
                     <strong>确定</strong>
                   </button>
-                  <button class="btn btn-info form-control" @click="showRegister">
+                  <button class="btn btn-info form-control" @click="showRegister" v-show="false">
                     <strong>取消</strong>
                   </button>
                 </div>
@@ -125,7 +128,14 @@
 
 <script>
 import HmacSHA256 from "crypto-js/hmac-sha256";
-import { getUserInfo, login, getInfo, regisUser, getResource } from "@/api";
+import {
+  getUserInfo,
+  login,
+  getInfo,
+  regisUser,
+  getResource,
+  getDanMu
+} from "@/api";
 import Base64 from "crypto-js/enc-base64";
 export default {
   name: "Login",
@@ -250,6 +260,11 @@ export default {
     },
     handleShowErWei() {
       this.showErWei = !this.showErWei;
+    },
+    async getDm() {
+      let url = `https://api.bilibili.com/x/v2/dm/history/index?type=1&oid=230130174&month=2020-08`;
+      let res = await getDanMu(url);
+      console.log(res);
     }
   }
 };
