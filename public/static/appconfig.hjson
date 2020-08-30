@@ -5,7 +5,7 @@
             {
                 // 系统文件名
                 "icon": "ios-navigate",
-                "name": "WordExport",
+                "name": "word_export",
                 time:100,
                 // 系统标题
                 "title": "模板导出系统",
@@ -14,12 +14,12 @@
                 // 系统路由
                 "activeRule": "/main/#/word_export",
                 "container": "#micro_app",
-                "type": "microApp"
+                "appType": "microApp"
             },
             {
                 // 系统文件名
                 "icon": "ios-navigate",
-                "name": "MyBlog",
+                "name": "blog",
                 time:100,
                 // 系统标题
                 "title": "个人博客",
@@ -28,7 +28,7 @@
                 // 系统路由
                 
                 "container": "#micro_app",
-                "type": "iframe"
+                "appType": "iframe"
             },
             {
                 // 系统文件名
@@ -39,10 +39,10 @@
                 "title": "运维管理系统",
                  "activeRule": "/main/#/oms",
                 // 系统入口
-                "entry": "http://localhost:4000/oms",
+                "entry": "http://localhost:8080/oms/index.txt",
                 // 系统路由
                 "container": "#micro_app",
-                "type": "microApp"
+                "appType": "microApp"
             },
         ]
     },
@@ -61,7 +61,7 @@
                 // 系统路由
                 "activeRule": "/main/#/word_export",
                 "container": "#micro_app",
-                "type": "microApp"
+                "appType": "microApp"
             },
         ]
     }

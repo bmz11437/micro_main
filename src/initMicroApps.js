@@ -18,7 +18,7 @@ export async function initMicroApp(config) {
   let appsConfig = config.microApps;
   let apps = [];
   appsConfig.forEach((item) => {
-    if (item.type == "microApp") {
+    if (item.appType == "microApp") {
       apps.push({
         ...item,
         props: {
@@ -31,13 +31,14 @@ export async function initMicroApp(config) {
   registerMicroApps(apps);
   start({ sandbox: true });
 }
-export function setGlobalData(userInfo, mapConfig) {
+export function setGlobalData(userInfo, mapConfig, resource) {
   if (!userInfo) {
     userInfo = store.getters.userInfo;
   }
   setGlobalState({
     userInfo,
     mapConfig,
+    resource,
   });
 }
 

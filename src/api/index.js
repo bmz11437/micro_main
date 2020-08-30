@@ -27,3 +27,14 @@ export function regisUser(param) {
 
   return POST(baseUrl + `/user`, "用户注册", param);
 }
+
+export function log(param) {
+  let baseUrl = store.getters.appConfig.api;
+
+  return POST(baseUrl + `/log`, "用户注册", param);
+}
+
+export function getResource() {
+  let baseUrl = store.getters.appConfig.api;
+  return GET(baseUrl + `/user/resource`, "获取用户资源");
+}

@@ -49,20 +49,29 @@ export default {
       return this.$store.getters.appConfig.microApps;
     }
   },
-
+  watch: {
+    $route() {
+      this.initLayout();
+    }
+  },
   mounted() {
-    let name = this.$route.name;
-    this.apps.forEach((item, i) => {
-      if (item.name == name && item.type == "iframe") {
-        this.iframeUrl = item.entry;
-        this.showIframe = true;
-        this.activeIndex = i;
-      }
-    });
+    this.initLayout();
   },
   methods: {
+    initLayout() {
+      let name = this.$route.name;
+      this.apps.forEach((item, i) => {
+        if (item.name == name) {
+          if (item.appType == "iframe") {
+            this.iframeUrl = item.entry;
+            this.showIframe = true;
+          }
+
+          this.activeIndex = i;
+        }
+      });
+    },
     logOut() {
-      debugger
       this.$router.push({
         name: "Login"
       });

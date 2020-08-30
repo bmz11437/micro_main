@@ -48,6 +48,33 @@ export function GET(url, info, params, headers = {}) {
           let data = response.data;
           resolve(data);
         } else {
+          iview.Message.error(response.message);
+          reject(response);
+        }
+      })
+      .catch((error) => {
+        iview.Message.error(error.response.data.message);
+        reject(error);
+        console.log(`${info}接口调用失败`);
+      });
+  });
+}
+export function DELETE(url, info, params, headers = {}) {
+  let token = localStorage.getItem("token");
+  return new Promise((resolve, reject) => {
+    axios
+      .delete(url, {
+        params,
+        headers: {
+          ...headers,
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          let data = response.data;
+          resolve(data);
+        } else {
           reject(response);
         }
       })
@@ -57,7 +84,6 @@ export function GET(url, info, params, headers = {}) {
       });
   });
 }
-
 export function POST(url, info, params) {
   let token = localStorage.getItem("token");
   return new Promise((resolve, reject) => {
@@ -65,11 +91,36 @@ export function POST(url, info, params) {
       .post(url, params, {
         headers: {
           "Access-Control-Allow-Origin": "*",
-          token,
+          Authorization: "Bearer " + token,
         },
       })
       .then((response) => {
         if (response.status == 200) {
+          resolve(response.data);
+        } else {
+          iview.Message.error(response.message);
+          resolve(response);
+        }
+      })
+      .catch((err) => {
+        console.error(`${info}接口调用失败`);
+        iview.Message.error(err.response.data.message);
+        reject(err.response);
+      });
+  });
+}
+export function PUT(url, info, params) {
+  let token = localStorage.getItem("token");
+  return new Promise((resolve, reject) => {
+    axios
+      .put(url, params, {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+          Authorization: "Bearer " + token,
+        },
+      })
+      .then((response) => {
+        if (response.status === 200) {
           resolve(response.data);
         } else {
           iview.Message.error(response.message);

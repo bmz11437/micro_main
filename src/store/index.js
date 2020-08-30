@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     appConfig: null,
     userInfo: {},
+    resource: [],
   },
   mutations: {
     appConfig(state, data) {
@@ -14,7 +15,11 @@ export default new Vuex.Store({
     },
     userInfo(state, data) {
       state.userInfo = data;
-      setGlobalData(data);
+      // setGlobalData(data);
+    },
+    resource(state, data) {
+      state.resource = data;
+      setGlobalData(null, null, data);
     },
   },
   actions: {},
@@ -22,5 +27,6 @@ export default new Vuex.Store({
   getters: {
     appConfig: (state) => state.appConfig,
     userInfo: (state) => state.userInfo,
+    resource: (state) => state.resource,
   },
 });

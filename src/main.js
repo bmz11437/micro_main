@@ -1,9 +1,9 @@
-import 'whatwg-fetch';
-import 'custom-event-polyfill';
-import 'core-js/stable/promise';
-import 'core-js/stable/symbol';
-import 'core-js/stable/string/starts-with';
-import 'core-js/web/url';
+import "whatwg-fetch";
+import "custom-event-polyfill";
+import "core-js/stable/promise";
+import "core-js/stable/symbol";
+import "core-js/stable/string/starts-with";
+import "core-js/web/url";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min";
@@ -22,6 +22,7 @@ import VueFullPage from "vue-fullpage.js";
 
 import { getAppConfig } from "@/api";
 import { initMicroApp } from "./initMicroApps";
+import "./register/index";
 // import $ from 'jquery'
 Vue.config.productionTip = false;
 

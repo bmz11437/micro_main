@@ -26,8 +26,8 @@ const routes = [
           import(/* webpackChunkName: "Portal" */ "../views/Portal.vue"),
       },
       {
-        path: "wordExport",
-        name: "wordExport",
+        path: "word_export",
+        name: "word_export",
         meta: {
           activeRule: "/main/#/word_export",
         },
@@ -36,8 +36,8 @@ const routes = [
         children: [],
       },
       {
-        path: "MyBlog",
-        name: "MyBlog",
+        path: "blog",
+        name: "blog",
         meta: {
           activeRule: "/main/#/MyBlog",
         },
