@@ -56,6 +56,9 @@ module.exports = {
           }),
         ],
       },
+      // sass: {
+      //   implementation: require("sass"),
+      // },
     },
   },
   productionSourceMap: false,

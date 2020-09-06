@@ -169,10 +169,12 @@ export default {
   float: unset;
   display: inline-block;
 }
-/deep/ .ivu-select-dropdown {
-  text-align: left;
-  /deep/ .ivu-icon {
-    margin-right: 0.5rem;
+::v-deep {
+  .ivu-select-dropdown {
+    text-align: left;
+    .ivu-icon {
+      margin-right: 0.5rem;
+    }
   }
 }
 </style>

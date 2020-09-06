@@ -113,6 +113,7 @@ export default {
     left: 0;
     display: flex;
     justify-content: center;
+    background: unset;
     .sys-item {
       flex: 1;
       max-width: 16rem;

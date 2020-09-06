@@ -45,9 +45,6 @@
                 <button class="btn btn-success form-control" @click="showRegister">
                   <strong>注册</strong>
                 </button>
-                <button class="btn btn-info form-control" @click="getDm">
-                  <strong>测试</strong>
-                </button>
               </div>
             </div>
             <div class="login-body" v-show="isRegis">
@@ -421,10 +418,12 @@ export default {
     padding: 0;
   }
 }
-/deep/.form-group {
-  margin-bottom: 2.5rem;
-}
-/deep/ .form-group:last-child {
-  margin-bottom: 0;
+::v-deep {
+  .form-group {
+    margin-bottom: 2.5rem;
+  }
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
 }
 </style>

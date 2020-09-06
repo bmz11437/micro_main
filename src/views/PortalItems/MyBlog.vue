@@ -9,9 +9,9 @@
 <script>
 export default {
   name: "MyBlog",
-  methods:{
-    handleClick(){
-      this.$emit('handle-click')
+  methods: {
+    handleClick() {
+      this.$emit("handle-click");
     }
   }
 };
@@ -30,11 +30,13 @@ export default {
     left: 50%;
     font-size: 2rem;
     transform: translateX(-50%) translateY(-50%);
-    /deep/ .ivu-btn-circle.ivu-btn-icon-only {
-      font-size: 2rem;
-      width: 3rem;
-      height: 3rem;
-    }
+  }
+}
+::v-deep {
+  .ivu-btn-circle.ivu-btn-icon-only {
+    font-size: 2rem;
+    width: 3rem;
+    height: 3rem;
   }
 }
 </style>

@@ -55,6 +55,16 @@ const routes = [
           import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),
         children: [],
       },
+      {
+        path: "intro",
+        name: "intro",
+        meta: {
+          activeRule: "/main/#/intro",
+        },
+        component: () =>
+          import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),
+        children: [],
+      },
     ],
   },
 ];
