@@ -26,8 +26,8 @@ const routes = [
           import(/* webpackChunkName: "Portal" */ "../views/Portal.vue")
       },
       {
-        path: "wordExport",
-        name: "wordExport",
+        path: "word_export",
+        name: "word_export",
         meta: {
           activeRule: "/main/#/word_export"
         },
@@ -46,10 +46,40 @@ const routes = [
         children: []
       },
       {
-        path: "MyBlog",
-        name: "MyBlog",
+        path: "blog",
+        name: "blog",
         meta: {
           activeRule: "/main/#/MyBlog"
+        },
+        component: () =>
+          import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),
+        children: []
+      },
+      {
+        path: "oms",
+        name: "oms",
+        meta: {
+          activeRule: "/main/#/oms"
+        },
+        component: () =>
+          import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),
+        children: []
+      },
+      {
+        path: "intro",
+        name: "intro",
+        meta: {
+          activeRule: "/main/#/intro"
+        },
+        component: () =>
+          import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),
+        children: []
+      },
+      {
+        path: "house",
+        name: "house",
+        meta: {
+          activeRule: "/main/#/houses"
         },
         component: () =>
           import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),

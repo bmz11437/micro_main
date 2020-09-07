@@ -790,7 +790,14 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2":
+"@babel/runtime@^7.10.5":
+  version "7.11.2"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.11.2.tgz#f549c13c754cc40b87644b9fa9f09a6a95fe0736"
+  integrity sha512-TeWkU52so0mPtDcaCTxNBI/IHiz0pZgr8VEFqXFtZWpYD08ZB6FaSwVAS8MKRQAP3bYKiVjwysOJgMFY28o6Tw==
+  dependencies:
+    regenerator-runtime "^0.13.4"
+
+"@babel/runtime@^7.7.2":
   version "7.10.5"
   resolved "https://registry.npm.taobao.org/@babel/runtime/download/@babel/runtime-7.10.5.tgz?cache=0&sync_timestamp=1594749160928&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2F%40babel%2Fruntime%2Fdownload%2F%40babel%2Fruntime-7.10.5.tgz#303d8bd440ecd5a491eae6117fd3367698674c5c"
   integrity sha1-MD2L1EDs1aSR6uYRf9M2dphnTFw=
@@ -2255,6 +2262,21 @@ check-types@^8.0.3:
   resolved "https://registry.npm.taobao.org/check-types/download/check-types-8.0.3.tgz?cache=0&sync_timestamp=1579455903027&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fcheck-types%2Fdownload%2Fcheck-types-8.0.3.tgz#3356cca19c889544f2d7a95ed49ce508a0ecf552"
   integrity sha1-M1bMoZyIlUTy16le1JzlCKDs9VI=
 
+"chokidar@>=2.0.0 <4.0.0":
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/chokidar/-/chokidar-3.4.2.tgz#38dc8e658dec3809741eb3ef7bb0a47fe424232d"
+  integrity sha512-IZHaDeBeI+sZJRX7lGcXsdzgvZqKv6sECqsbErJA4mHWfpRrD8B97kSFN4cQz6nGBGiuFia1MKR4d6c1o8Cv7A==
+  dependencies:
+    anymatch "~3.1.1"
+    braces "~3.0.2"
+    glob-parent "~5.1.0"
+    is-binary-path "~2.1.0"
+    is-glob "~4.0.1"
+    normalize-path "~3.0.0"
+    readdirp "~3.4.0"
+  optionalDependencies:
+    fsevents "~2.1.2"
+
 chokidar@^2.1.8:
   version "2.1.8"
   resolved "https://registry.npm.taobao.org/chokidar/download/chokidar-2.1.8.tgz?cache=0&sync_timestamp=1587911196018&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fchokidar%2Fdownload%2Fchokidar-2.1.8.tgz#804b3a7b6a99358c3c5c61e71d8728f041cff917"
@@ -2948,8 +2970,22 @@ currently-unhandled@^0.4.1:
 
 custom-event-polyfill@^1.0.7:
   version "1.0.7"
+<<<<<<< HEAD
   resolved "https://registry.npm.taobao.org/custom-event-polyfill/download/custom-event-polyfill-1.0.7.tgz#9bc993ddda937c1a30ccd335614c6c58c4f87aee"
   integrity sha1-m8mT3dqTfBowzNM1YUxsWMT4eu4=
+=======
+  resolved "https://registry.yarnpkg.com/custom-event-polyfill/-/custom-event-polyfill-1.0.7.tgz#9bc993ddda937c1a30ccd335614c6c58c4f87aee"
+  integrity sha512-TDDkd5DkaZxZFM8p+1I3yAlvM3rSr1wbrOliG4yJiwinMZN8z/iGL7BTlDkrJcYTmgUSb4ywVCc3ZaUtOtC76w==
+
+cwebp-bin@^5.0.0:
+  version "5.1.0"
+  resolved "https://registry.npm.taobao.org/cwebp-bin/download/cwebp-bin-5.1.0.tgz#d5bea87c127358558e7bf7a90a6d440d42dcb074"
+  integrity sha1-1b6ofBJzWFWOe/epCm1EDULcsHQ=
+  dependencies:
+    bin-build "^3.0.0"
+    bin-wrapper "^4.0.1"
+    logalot "^2.1.0"
+>>>>>>> 3eda8f3cf7be940c322d6fa6f4f6e4f1c21fc88d
 
 cyclist@^1.0.1:
   version "1.0.1"
@@ -7224,12 +7260,12 @@ q@^1.1.2:
   resolved "https://registry.npm.taobao.org/q/download/q-1.5.1.tgz#7e32f75b41381291d04611f1bf14109ac00651d7"
   integrity sha1-fjL3W0E4EpHQRhHxvxQQmsAGUdc=
 
-qiankun@^2.0.16:
-  version "2.0.16"
-  resolved "https://registry.npm.taobao.org/qiankun/download/qiankun-2.0.16.tgz#344d2f78a067b20992a2faddf4674c08a7fb8b81"
-  integrity sha1-NE0veKBnsgmSovrd9GdMCKf7i4E=
+qiankun@^2.0.20:
+  version "2.0.20"
+  resolved "https://registry.yarnpkg.com/qiankun/-/qiankun-2.0.20.tgz#df4ed9a1989b8b2a5c7a7c7aaabd20ab253e437d"
+  integrity sha512-UDMsJ/XkAW4eeyB1xjQZ6An5rYYGEyKVHNedPz5hGM7AtW/HH50Vq860ItpchRyG8V27227AjCLB//+HzPBIkg==
   dependencies:
-    "@babel/runtime" "^7.5.5"
+    "@babel/runtime" "^7.10.5"
     import-html-entry "^1.7.0"
     lodash "^4.17.11"
     single-spa "^5.3.1"
@@ -7684,6 +7720,13 @@ sass-loader@^9.0.2:
     neo-async "^2.6.1"
     schema-utils "^2.7.0"
     semver "^7.3.2"
+
+sass@^1.26.10:
+  version "1.26.10"
+  resolved "https://registry.yarnpkg.com/sass/-/sass-1.26.10.tgz#851d126021cdc93decbf201d1eca2a20ee434760"
+  integrity sha512-bzN0uvmzfsTvjz0qwccN1sPm2HxxpNI/Xa+7PlUEMS+nQvbyuEK7Y0qFqxlPHhiNHb1Ze8WQJtU31olMObkAMw==
+  dependencies:
+    chokidar ">=2.0.0 <4.0.0"
 
 sax@~1.2.4:
   version "1.2.4"
@@ -9223,8 +9266,13 @@ websocket-extensions@>=0.1.1:
 
 whatwg-fetch@^3.4.0:
   version "3.4.0"
+<<<<<<< HEAD
   resolved "https://registry.npm.taobao.org/whatwg-fetch/download/whatwg-fetch-3.4.0.tgz#e11de14f4878f773fbebcde8871b2c0699af8b30"
   integrity sha1-4R3hT0h493P7683ohxssBpmvizA=
+=======
+  resolved "https://registry.yarnpkg.com/whatwg-fetch/-/whatwg-fetch-3.4.0.tgz#e11de14f4878f773fbebcde8871b2c0699af8b30"
+  integrity sha512-rsum2ulz2iuZH08mJkT0Yi6JnKhwdw4oeyMjokgxd+mmqYSd9cPpOQf01TIWgjxG/U4+QR+AwKq6lSbXVxkyoQ==
+>>>>>>> 3eda8f3cf7be940c322d6fa6f4f6e4f1c21fc88d
 
 which-module@^2.0.0:
   version "2.0.0"

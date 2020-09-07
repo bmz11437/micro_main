@@ -1,4 +1,4 @@
-import { JGET, POST, GET } from "@/httpRequest";
+import { JGET, POST, GET, BGET } from "@/httpRequest";
 import store from "@/store";
 export function getAppConfig() {
   return JGET("static/appConfig.hjson");
@@ -26,4 +26,19 @@ export function regisUser(param) {
   let baseUrl = store.getters.appConfig.api;
 
   return POST(baseUrl + `/user`, "用户注册", param);
+}
+
+export function log(param) {
+  let baseUrl = store.getters.appConfig.api;
+
+  return POST(baseUrl + `/log`, "用户注册", param);
+}
+
+export function getResource() {
+  let baseUrl = store.getters.appConfig.api;
+  return GET(baseUrl + `/user/resource`, "获取用户资源");
+}
+
+export function getDanMu(url) {
+  return BGET(url, "获取用户资源");
 }

@@ -1,44 +1,81 @@
 <template>
-  <full-page ref="fullpage" :options="options">
-    <div class="section">
-      <WordExport @handle-click="handleClick('oms')" />
+  <div class="portal-con">
+    <div class="portal-header">
+      <span class="title">我的网站</span>
+      <Dropdown @on-click="handleDropClick" style="float:right;">
+        <span class="user-opera">
+          <Icon type="md-person" />
+          {{ userInfo.userName }}
+        </span>
+        <DropdownMenu slot="list">
+          <DropdownItem name="登出">
+            <Icon type="md-power" />登出
+          </DropdownItem>
+          <DropdownItem name="修改密码">
+            <Icon type="md-create" />修改密码
+          </DropdownItem>
+        </DropdownMenu>
+      </Dropdown>
     </div>
-    <div class="section">
-      <MyBlog @handle-click="handleClick('MyBlog')" />
+    <div class="sys-con">
+      <div
+        class="sys-item"
+        v-for="item in systems"
+        :key="item.id"
+        @click="handleClick(item.identify)"
+      >
+        <div class="sys-logo">
+          <span class="sys-icon">
+            <Icon :type="item.icon" />
+          </span>
+        </div>
+        <div class="title">{{ item.title }}</div>
+      </div>
     </div>
-  </full-page>
+  </div>
 </template>
 
 <script>
-import WordExport from "./PortalItems/WordExport";
-import MyBlog from "./PortalItems/MyBlog";
 export default {
   name: "Portal",
-  components: {
-    WordExport,
-    MyBlog
-  },
   data() {
     return {
-      microApps: [],
-      options: {
-        verticalCentered: false,
-        css3: false
-      }
+      userInfo: this.$store.getters.userInfo
     };
   },
-  mounted() {
-    this.microApps = this.$store.getters.appConfig.microApps;
+  computed: {
+    systems() {
+      let res = [];
+      let resource = this.$store.getters.resource;
+      let config = this.$store.getters.appConfig;
+      resource.forEach(data => {
+        config.microApps.forEach(item => {
+          if (data.identify == item.name) {
+            res.push({
+              ...Object.assign(item, data),
+              children: null
+            });
+          }
+        });
+      });
+      console.log(res);
+      return res;
+    }
   },
   methods: {
-    getPortalComp(i) {
-      let comp;
-      switch (i) {
-        case 0:
-          comp = WordExport;
+    logOut() {
+      this.$router.push({
+        name: "Login"
+      });
+    },
+    handleDropClick(name) {
+      switch (name) {
+        case "登出":
+          this.logOut();
+          break;
+        case "修改密码":
           break;
       }
-      return comp;
     },
     handleClick(name) {
       this.$router.push({
@@ -49,76 +86,61 @@ export default {
 };
 </script>
 
-<style scoped>
-.full-page {
+<style lang="scss" scoped>
+.portal-con {
   width: 100%;
   height: 100%;
-}
-/* Style for our header texts
-	* --------------------------------------- */
-h1 {
-  font-size: 5em;
-  font-family: arial, helvetica;
-  color: #fff;
-  margin: 0;
-  padding: 0;
-  cursor: pointer;
-}
-
-/* Centered texts in each section
-	* --------------------------------------- */
-.section {
-  text-align: center;
-}
-
-/* Backgrounds will cover all the section
-	* --------------------------------------- */
-#section0,
-#section1,
-#section2,
-#section3,
-#slide1,
-#slide2 {
-  background-size: cover;
-  background-attachment: fixed;
-}
-
-/* Defining each sectino background and styles
-	* --------------------------------------- */
-#section0 {
-  background-image: url(../assets/imgs/bg1.jpg);
-}
-#section0 h1 {
-  top: 50%;
-  transform: translateY(-50%);
-  position: relative;
-}
-#section2 {
   background-image: url(../assets/imgs/bg3.jpg);
-  padding: 6% 0 0 0;
-}
-#section3 {
-  background-image: url(../assets/imgs/bg4.jpg);
-  padding: 6% 0 0 0;
-}
-#section3 h1 {
-  color: #000;
-}
+  background-size: 100% 100%;
+  position: relative;
+  overflow: hidden;
+  padding: 0 8rem;
+  .portal-header {
+    color: white;
+    font-size: 2rem;
 
-/*Adding background for the slides
-	* --------------------------------------- */
-#slide1 {
-  background-image: url(../assets/imgs/bg2.jpg);
-  padding: 6% 0 0 0;
-}
-#slide2 {
-  background-image: url(../assets/imgs/bg5.jpg);
-  padding: 6% 0 0 0;
-}
-
-/* Bottom menu
-	* --------------------------------------- */
-#infoMenu li a {
-  color: #fff;
+    padding-top: 3rem;
+    .user-opera {
+      font-size: 1.2rem;
+      cursor: pointer;
+    }
+  }
+  .sys-con {
+    width: 100%;
+    height: 8rem;
+    position: absolute;
+    bottom: 3rem;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    background: unset;
+    .sys-item {
+      flex: 1;
+      max-width: 16rem;
+      background-color: white;
+      cursor: pointer;
+      border-radius: 0.5rem;
+      border-left: 0.3rem solid rgb(3, 187, 255);
+      margin-right: 2rem;
+      .sys-logo {
+        width: 100%;
+        height: calc(100% - 3rem);
+        .sys-icon {
+          font-size: 3.5rem;
+          padding-left: 1rem;
+        }
+      }
+      .title {
+        line-height: 3rem;
+        height: 3rem;
+        font-size: 1.2rem;
+        padding-left: 1rem;
+      }
+    }
+    .sys-item:hover {
+      background-color: rgb(3, 187, 255);
+      color: white;
+    }
+  }
 }
 </style>

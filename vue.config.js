@@ -33,6 +33,7 @@ module.exports = {
   devServer: {
     port: 9527,
     transportMode: "ws",
+    injectClient: false,
     headers: {
       "Access-Control-Allow-Origin": "*"
     }
@@ -55,6 +56,9 @@ module.exports = {
           })
         ]
       }
+      // sass: {
+      //   implementation: require("sass"),
+      // },
     }
   },
   productionSourceMap: false,

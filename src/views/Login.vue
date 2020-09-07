@@ -116,6 +116,7 @@
                   <button
                     class="btn btn-info form-control"
                     @click="showRegister"
+                    v-show="false"
                   >
                     <strong>取消</strong>
                   </button>
@@ -144,7 +145,14 @@
 
 <script>
 import HmacSHA256 from "crypto-js/hmac-sha256";
-import { getUserInfo, login, getInfo, regisUser } from "@/api";
+import {
+  getUserInfo,
+  login,
+  getInfo,
+  regisUser,
+  getResource,
+  getDanMu
+} from "@/api";
 import Base64 from "crypto-js/enc-base64";
 export default {
   name: "Login",
@@ -244,8 +252,22 @@ export default {
           password: this.password
         });
         localStorage.setItem("token", res);
+
+        // this.$log({
+        //   system: "主系统",
+        //   type: "系统访问",
+        //   info: "系统初始化"
+        // });
+        // this.$log({
+        //   system: "主系统",
+        //   type: "功能操作",
+        //   info: "用户登录"
+        // });
         let info = await getInfo();
+        let resource = await getResource();
         this.$store.commit("userInfo", info);
+        this.$store.commit("resource", resource);
+
         this.$router.push({
           name: "Portal"
         });
@@ -255,6 +277,11 @@ export default {
     },
     handleShowErWei() {
       this.showErWei = !this.showErWei;
+    },
+    async getDm() {
+      let url = `https://api.bilibili.com/x/v2/dm/history/index?type=1&oid=230130174&month=2020-08`;
+      let res = await getDanMu(url);
+      console.log(res);
     }
   }
 };
@@ -411,10 +438,12 @@ export default {
     padding: 0;
   }
 }
-/deep/.form-group {
-  margin-bottom: 2.5rem;
-}
-/deep/ .form-group:last-child {
-  margin-bottom: 0;
+::v-deep {
+  .form-group {
+    margin-bottom: 2.5rem;
+  }
+  .form-group:last-child {
+    margin-bottom: 0;
+  }
 }
 </style>

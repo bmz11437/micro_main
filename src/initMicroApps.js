@@ -1,7 +1,8 @@
 import {
   registerMicroApps,
   start,
-  initGlobalState
+  initGlobalState,
+  addGlobalUncaughtErrorHandler
   // setDefaultMountApp
 } from "qiankun";
 
@@ -13,12 +14,12 @@ const { onGlobalStateChange, setGlobalState } = initGlobalState({
 });
 
 onGlobalStateChange(() => {});
-
+addGlobalUncaughtErrorHandler(event => console.log(event));
 export async function initMicroApp(config) {
   let appsConfig = config.microApps;
   let apps = [];
   appsConfig.forEach(item => {
-    if (item.type == "microApp") {
+    if (item.appType == "microApp") {
       apps.push({
         ...item,
         props: {
@@ -29,28 +30,16 @@ export async function initMicroApp(config) {
     }
   });
   registerMicroApps(apps);
-  start({
-    sandbox: false,
-    prefetch: "all",
-    fetch(url, ...args) {
-      if (url.indexOf("%5Coms%5Cstatic%5Cjs%5C1") > -1) {
-        return {
-          async text() {
-            return "";
-          }
-        };
-      }
-      return window.fetch(url, ...args);
-    }
-  });
+  start({ sandbox: true });
 }
-export function setGlobalData(userInfo, mapConfig) {
+export function setGlobalData(userInfo, mapConfig, resource) {
   if (!userInfo) {
     userInfo = store.getters.userInfo;
   }
   setGlobalState({
     userInfo,
-    mapConfig
+    mapConfig,
+    resource
   });
 }
 

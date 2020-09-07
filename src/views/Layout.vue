@@ -1,17 +1,22 @@
 <template>
   <div class="layout">
     <div class="header">
-      <Menu mode="horizontal" theme="light" :active-name="activeIndex" @on-select="onClick">
+      <Menu
+        mode="horizontal"
+        theme="light"
+        :active-name="activeIndex"
+        @on-select="onClick"
+      >
         <div class="layout-logo" @click="handleBack">个人网站</div>
         <div class="layout-nav">
-          <MenuItem :name="i" v-for="(item,i) in apps" :key="i">
+          <MenuItem :name="i" v-for="(item, i) in apps" :key="i">
             <Icon :type="item.icon"></Icon>
-            {{item.title}}
+            {{ item.title }}
           </MenuItem>
           <Dropdown @on-click="handleDropClick">
             <a href="javascript:void(0)">
               <Icon type="md-person" />
-              {{userInfo.userName}}
+              {{ userInfo.userName }}
             </a>
             <DropdownMenu slot="list">
               <DropdownItem name="登出">
@@ -26,7 +31,10 @@
       </Menu>
     </div>
     <div class="iframe-con" v-show="showIframe">
-      <iframe :src="iframeUrl" style="width:100%;height:100%;overflow: hidden;border:none"></iframe>
+      <iframe
+        :src="iframeUrl"
+        style="width:100%;height:100%;overflow: hidden;border:none"
+      ></iframe>
       <span class="back-icon" @click="handleBack">
         <Icon type="ios-close-circle-outline" />
       </span>
@@ -49,20 +57,29 @@ export default {
       return this.$store.getters.appConfig.microApps;
     }
   },
-
+  watch: {
+    $route() {
+      this.initLayout();
+    }
+  },
   mounted() {
-    let name = this.$route.name;
-    this.apps.forEach((item, i) => {
-      if (item.name == name && item.type == "iframe") {
-        this.iframeUrl = item.entry;
-        this.showIframe = true;
-        this.activeIndex = i;
-      }
-    });
+    this.initLayout();
   },
   methods: {
+    initLayout() {
+      let name = this.$route.name;
+      this.apps.forEach((item, i) => {
+        if (item.name == name) {
+          if (item.appType == "iframe") {
+            this.iframeUrl = item.entry;
+            this.showIframe = true;
+          }
+
+          this.activeIndex = i;
+        }
+      });
+    },
     logOut() {
-      debugger
       this.$router.push({
         name: "Login"
       });
@@ -160,10 +177,12 @@ export default {
   float: unset;
   display: inline-block;
 }
-/deep/ .ivu-select-dropdown {
-  text-align: left;
-  /deep/ .ivu-icon {
-    margin-right: 0.5rem;
+::v-deep {
+  .ivu-select-dropdown {
+    text-align: left;
+    .ivu-icon {
+      margin-right: 0.5rem;
+    }
   }
 }
 </style>
