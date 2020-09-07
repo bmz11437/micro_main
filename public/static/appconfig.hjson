@@ -10,7 +10,7 @@
                 // 系统标题
                 "title": "模板导出系统",
                 // 系统入口
-                "entry": "http://localhost:8080/word_export/",
+                "entry": "http://localhost:8090/word_export/",
                 // 系统路由
                 "activeRule": "/main/#/word_export",
                 "container": "#micro_app",
@@ -30,10 +30,24 @@
                 "container": "#micro_app",
                 "type": "iframe"
             },
+            {
+                // 系统文件名
+                "icon": "ios-navigate",
+                "name": "oms",
+                time:100,
+                // 系统标题
+                "title": "后台管理",
+                // 系统入口
+                "entry": "http://localhost:4000/oms/index.html",
+                // 系统路由
+                "activeRule": "/main/#/oms",
+                "container": "#micro_app",
+                "type": "microApp"
+            },
         ]
     },
     "production":{
-        "api":"http://122.51.140.204:2000",
+        "api":"http://localhost:2000",
         "microApps":[
             {
                 // 系统文件名
@@ -46,6 +60,20 @@
                 "entry": "http://localhost:8081/word_export/",
                 // 系统路由
                 "activeRule": "/main/#/word_export",
+                "container": "#micro_app",
+                "type": "microApp"
+            },
+            {
+                // 系统文件名
+                "icon": "ios-navigate",
+                "name": "oms",
+                time:100,
+                // 系统标题
+                "title": "后台管理",
+                // 系统入口
+                "entry": "http://localhost:8090/oms",
+                // 系统路由
+                "activeRule": "/main/#/oms",
                 "container": "#micro_app",
                 "type": "microApp"
             },

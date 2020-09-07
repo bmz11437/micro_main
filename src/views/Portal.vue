@@ -1,7 +1,7 @@
 <template>
   <full-page ref="fullpage" :options="options">
     <div class="section">
-      <WordExport @handle-click="handleClick('wordExport')" />
+      <WordExport @handle-click="handleClick('oms')" />
     </div>
     <div class="section">
       <MyBlog @handle-click="handleClick('MyBlog')" />

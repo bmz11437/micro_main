@@ -10,47 +10,57 @@ const routes = [
     name: "Home",
     component: Home,
     redirect: {
-      name: "Login",
+      name: "Login"
     },
     children: [
       {
         path: "Login",
         name: "Login",
         component: () =>
-          import(/* webpackChunkName: "about" */ "../views/Login.vue"),
+          import(/* webpackChunkName: "about" */ "../views/Login.vue")
       },
       {
         path: "Portal",
         name: "Portal",
         component: () =>
-          import(/* webpackChunkName: "Portal" */ "../views/Portal.vue"),
+          import(/* webpackChunkName: "Portal" */ "../views/Portal.vue")
       },
       {
         path: "wordExport",
         name: "wordExport",
         meta: {
-          activeRule: "/main/#/word_export",
+          activeRule: "/main/#/word_export"
         },
         component: () =>
           import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),
-        children: [],
+        children: []
+      },
+      {
+        path: "oms",
+        name: "oms",
+        meta: {
+          activeRule: "/main/#/oms"
+        },
+        component: () =>
+          import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),
+        children: []
       },
       {
         path: "MyBlog",
         name: "MyBlog",
         meta: {
-          activeRule: "/main/#/MyBlog",
+          activeRule: "/main/#/MyBlog"
         },
         component: () =>
           import(/* webpackChunkName: "Layout" */ "../views/Layout.vue"),
-        children: [],
-      },
-    ],
-  },
+        children: []
+      }
+    ]
+  }
 ];
 
 const router = new VueRouter({
-  routes,
+  routes
 });
 
 export default router;

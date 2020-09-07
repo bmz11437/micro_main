@@ -1,14 +1,15 @@
 import {
   registerMicroApps,
   start,
-  initGlobalState,
+  initGlobalState
   // setDefaultMountApp
 } from "qiankun";
+
 import store from "@/store";
 import router from "@/router";
 import * as req from "@/httpRequest";
 const { onGlobalStateChange, setGlobalState } = initGlobalState({
-  userInfo: {},
+  userInfo: {}
 });
 
 onGlobalStateChange(() => {});
@@ -16,19 +17,32 @@ onGlobalStateChange(() => {});
 export async function initMicroApp(config) {
   let appsConfig = config.microApps;
   let apps = [];
-  appsConfig.forEach((item) => {
+  appsConfig.forEach(item => {
     if (item.type == "microApp") {
       apps.push({
         ...item,
         props: {
           req,
-          config,
-        },
+          config
+        }
       });
     }
   });
   registerMicroApps(apps);
-  start({ sandbox: false, prefetch: "all" });
+  start({
+    sandbox: false,
+    prefetch: "all",
+    fetch(url, ...args) {
+      if (url.indexOf("%5Coms%5Cstatic%5Cjs%5C1") > -1) {
+        return {
+          async text() {
+            return "";
+          }
+        };
+      }
+      return window.fetch(url, ...args);
+    }
+  });
 }
 export function setGlobalData(userInfo, mapConfig) {
   if (!userInfo) {
@@ -36,21 +50,21 @@ export function setGlobalData(userInfo, mapConfig) {
   }
   setGlobalState({
     userInfo,
-    mapConfig,
+    mapConfig
   });
 }
 
 router.beforeEach((to, from, next) => {
   if (!store.getters.userInfo.name && to.name !== "Login") {
     next({
-      path: "/Login",
+      path: "/Login"
     });
     return;
   }
   if (!to.matched[0]) {
     if (!from.matched[0]) {
       next({
-        path: "/Portal",
+        path: "/Portal"
       });
     }
     return;

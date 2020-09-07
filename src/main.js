@@ -1,3 +1,10 @@
+// import 'whatwg-fetch';
+// import 'custom-event-polyfill';
+// import 'core-js/stable/promise';
+// import 'core-js/stable/symbol';
+// import 'core-js/stable/string/starts-with';
+// import 'core-js/web/url';
+
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.min";
 
@@ -29,7 +36,7 @@ async function initApp() {
   new Vue({
     router,
     store,
-    render: (h) => h(App),
+    render: h => h(App)
   }).$mount("#app");
 }
 initApp();

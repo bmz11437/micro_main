@@ -5,17 +5,22 @@
         <div class="login-container col-md-3 col-sm-8 col-xs-12">
           <div class="login-content">
             <div class="toggle-login">
-              <div class="pic" :class="{bg1:showErWei,bg2:!showErWei}" @click="handleShowErWei"></div>
+              <div
+                class="pic"
+                :class="{ bg1: showErWei, bg2: !showErWei }"
+                @click="handleShowErWei"
+              ></div>
             </div>
             <div class="login-header">
               <h3>
-                <strong>{{title}}</strong>
+                <strong>{{ title }}</strong>
               </h3>
-              <h5
-                v-if="false"
-              >Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis quam numquam</h5>
+              <h5 v-if="false">
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                Veritatis quam numquam
+              </h5>
             </div>
-            <div class="login-body" v-show="!showErWei&&!isRegis">
+            <div class="login-body" v-show="!showErWei && !isRegis">
               <div class="form-group">
                 <div class="pos-r">
                   <input
@@ -42,7 +47,10 @@
                 <button class="btn btn-primary form-control" @click="userLogin">
                   <strong>登录</strong>
                 </button>
-                <button class="btn btn-success form-control" @click="showRegister">
+                <button
+                  class="btn btn-success form-control"
+                  @click="showRegister"
+                >
                   <strong>注册</strong>
                 </button>
               </div>
@@ -93,11 +101,22 @@
                 </div>
               </div>
               <div class="form-group">
-                <div class="btn-group" role="group" aria-label="..." style="width:100%">
-                  <button class="btn btn-primary form-control" @click="handleRegis">
+                <div
+                  class="btn-group"
+                  role="group"
+                  aria-label="..."
+                  style="width:100%"
+                >
+                  <button
+                    class="btn btn-primary form-control"
+                    @click="handleRegis"
+                  >
                     <strong>确定</strong>
                   </button>
-                  <button class="btn btn-info form-control" @click="showRegister">
+                  <button
+                    class="btn btn-info form-control"
+                    @click="showRegister"
+                  >
                     <strong>取消</strong>
                   </button>
                 </div>
@@ -224,7 +243,7 @@ export default {
           name: this.name,
           password: this.password
         });
-        localStorage.setItem("token", res.token);
+        localStorage.setItem("token", res);
         let info = await getInfo();
         this.$store.commit("userInfo", info);
         this.$router.push({
