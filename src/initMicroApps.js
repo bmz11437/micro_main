@@ -2,7 +2,7 @@ import {
   registerMicroApps,
   start,
   initGlobalState,
-  addGlobalUncaughtErrorHandler
+  addGlobalUncaughtErrorHandler,
   // setDefaultMountApp
 } from "qiankun";
 
@@ -10,22 +10,22 @@ import store from "@/store";
 import router from "@/router";
 import * as req from "@/httpRequest";
 const { onGlobalStateChange, setGlobalState } = initGlobalState({
-  userInfo: {}
+  userInfo: {},
 });
 
 onGlobalStateChange(() => {});
-addGlobalUncaughtErrorHandler(event => console.log(event));
+addGlobalUncaughtErrorHandler((event) => console.log(event));
 export async function initMicroApp(config) {
   let appsConfig = config.microApps;
   let apps = [];
-  appsConfig.forEach(item => {
+  appsConfig.forEach((item) => {
     if (item.appType == "microApp") {
       apps.push({
         ...item,
         props: {
           req,
-          config
-        }
+          config,
+        },
       });
     }
   });
@@ -39,21 +39,21 @@ export function setGlobalData(userInfo, mapConfig, resource) {
   setGlobalState({
     userInfo,
     mapConfig,
-    resource
+    resource,
   });
 }
 
 router.beforeEach((to, from, next) => {
   if (!store.getters.userInfo.name && to.name !== "Login") {
     next({
-      path: "/Login"
+      path: "/Login",
     });
     return;
   }
   if (!to.matched[0]) {
     if (!from.matched[0]) {
       next({
-        path: "/Portal"
+        path: "/Portal",
       });
     }
     return;

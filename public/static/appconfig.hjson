@@ -1,6 +1,6 @@
 {
     "development":{
-        "api":"http://localhost:2000",
+        "api":"http://122.51.140.204:2000",
         "microApps":[
             {
                 // 系统文件名
@@ -10,11 +10,11 @@
                 // 系统标题
                 "title": "模板导出系统",
                 // 系统入口
-                "entry": "http://localhost:8080/intro/index.txt",
+                "entry": "http://localhost:8080/intro/index.html",
                 // 系统路由
                 "activeRule": "/main/#/intro",
                 "container": "#micro_app",
-                "appType": "microApp"
+                "appType": "iframe"
             },
             {
                 // 系统文件名
@@ -67,7 +67,7 @@
                 "title": "买房助手",
                  "activeRule": "/main/#/houses",
                 // 系统入口
-                "entry": "http://localhost:8081",
+                "entry": "http://localhost:3000",
                 // 系统路由
                 "container": "#micro_app",
                 "appType": "microApp"
@@ -76,7 +76,7 @@
         ]
     },
     "production":{
-        "api":"http://localhost:2000",
+        "api":"http://122.51.140.204:2000",
         "microApps":[
             {
                 // 系统文件名
@@ -112,7 +112,7 @@
                 "name": "intro",
                 time:100,
                 // 系统标题
-                "title": "模板导出系统",
+                "title": "系统介绍",
                 // 系统入口
                 "entry": "http://localhost:8081/intro/index.txt",
                 // 系统路由
