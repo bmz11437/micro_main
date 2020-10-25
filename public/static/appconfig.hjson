@@ -1,6 +1,6 @@
 {
     "development":{
-        "api":"http://122.51.140.204:2000",
+        "api":"http://localhost:3000/api",
         "microApps":[
             {
                 // 系统文件名

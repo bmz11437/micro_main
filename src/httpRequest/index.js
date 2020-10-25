@@ -33,7 +33,7 @@ export function JGET(url, info, params, headers = {}) {
 
 export function GET(url, info, params, headers = {}) {
   let token = localStorage.getItem("token");
-
+  debugger
   return new Promise((resolve, reject) => {
     axios
       .get(url, {

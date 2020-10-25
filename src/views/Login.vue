@@ -145,14 +145,7 @@
 
 <script>
 import HmacSHA256 from "crypto-js/hmac-sha256";
-import {
-  getUserInfo,
-  login,
-  getInfo,
-  regisUser,
-  getResource,
-  getDanMu
-} from "@/api";
+import { getUserInfo, login, regisUser, getResource, getDanMu } from "@/api";
 import Base64 from "crypto-js/enc-base64";
 export default {
   name: "Login",
@@ -251,8 +244,8 @@ export default {
           name: this.name,
           password: this.password
         });
-        localStorage.setItem("token", res);
-
+        localStorage.setItem("token", res.token);
+        debugger
         // this.$log({
         //   system: "主系统",
         //   type: "系统访问",
@@ -263,9 +256,8 @@ export default {
         //   type: "功能操作",
         //   info: "用户登录"
         // });
-        let info = await getInfo();
         let resource = await getResource();
-        this.$store.commit("userInfo", info);
+        this.$store.commit("userInfo", res);
         this.$store.commit("resource", resource);
 
         this.$router.push({
