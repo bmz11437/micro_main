@@ -15,7 +15,7 @@
     "fullpage.js": "^3.0.9",
     "hjson": "^3.2.1",
     "jquery": "^3.5.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "popper.js": "^1.16.1",
     "qiankun": "^2.0.16",
     "sass-loader": "^9.0.2",
